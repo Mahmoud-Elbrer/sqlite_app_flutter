@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../contact_details.dart';
+import './contact_details.dart';
 import '../models/contact.dart';
-import '../contact_list.dart';
+import './contact_list.dart';
 import '../presenters/contacts_presenter.dart';
 import '../views/base_view.dart';
 

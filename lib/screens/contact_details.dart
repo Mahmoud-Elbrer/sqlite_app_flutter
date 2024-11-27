@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../presenters/contacts_presenter.dart';
-import 'models/contact.dart';
+import '../../presenters/contacts_presenter.dart';
+import '../models/contact.dart';
 
-class ContactDialog { 
+class ContactDialog {
   final teFirstName = TextEditingController();
   final teLastName = TextEditingController();
   final tePhone = TextEditingController();
