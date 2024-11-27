@@ -15,22 +15,26 @@ class ContactList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("contacts.length");
+    print(contacts.length);
     return ListView.builder(
         itemCount: contacts.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
+            color: Colors.white,
             child: Container(
+                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                 child: Center(
                   child: Row(
                     children: <Widget>[
                       CircleAvatar(
                         radius: 40.0,
+                        backgroundColor: const Color(0xFF20283e),
                         child: Text(getInitials(contacts[index]),
                             style: const TextStyle(
                                 fontSize: 24.0,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                        backgroundColor: const Color(0xFF20283e)
+                                fontWeight: FontWeight.bold))
                       ),
                       Expanded(
                         child: Padding(
@@ -39,7 +43,7 @@ class ContactList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                contacts[index].firstName + " " + contacts[index].lastName,
+                                "${contacts[index].firstName} ${contacts[index].lastName}",
                                 style: const TextStyle(
                                     fontSize: 20.0,
                                     color: Colors.black,
@@ -81,8 +85,7 @@ class ContactList extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
+                )),
           );
         });
   }

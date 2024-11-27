@@ -41,7 +41,8 @@ class _HomePageState extends State<HomePage> implements BaseView {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: horizontalTitleAlignment,
           children: const <Widget>[
-            Text('Contacts',
+            Text(
+              'Contacts',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -56,8 +57,7 @@ class _HomePageState extends State<HomePage> implements BaseView {
   Future _openAddUserDialog() async {
     showDialog(
       context: context,
-      builder: (BuildContext context) =>
-          ContactDialog().build(context, this, false, null),
+      builder: (BuildContext context) => ContactDialog().build(context, this, false, null),
     );
 
     screenUpdate();
@@ -79,13 +79,28 @@ class _HomePageState extends State<HomePage> implements BaseView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: _buildTitle(context),
         actions: _buildActions(),
       ),
       body: FutureBuilder<List<Contact>>(
         future: contactsPresenter.getAll(),
         builder: (context, snapshot) {
-          return ContactList(snapshot.data ?? [], contactsPresenter);
+          print('Snapshot data: ${snapshot.data}');
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            // Handle errors
+            print(snapshot.error);
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+            // Display data if available
+            return ContactList(snapshot.data ?? [], contactsPresenter);
+          } else {
+            // Show a message if no data is available
+            return Center(child: Text('No contacts found.'));
+          }
         },
       ),
     );
@@ -96,6 +111,3 @@ class _HomePageState extends State<HomePage> implements BaseView {
     setState(() {});
   }
 }
-
-
-

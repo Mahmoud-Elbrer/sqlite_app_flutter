@@ -24,7 +24,9 @@ class ContactsPresenter {
     if (contact.id != null) {
       return DatabaseHelper.internal().update("contacts", contact);
     }
+
     return DatabaseHelper.internal().insert("contacts", contact);
+
   }
 
   delete(Contact contact) async {
