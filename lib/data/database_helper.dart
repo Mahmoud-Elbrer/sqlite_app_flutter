@@ -25,8 +25,7 @@ class DatabaseHelper {
     return openDatabase(path, version: 1, onCreate: onCreate);
   }
 
-  void onCreate(Database db, int version) async =>
-      await db.execute('CREATE TABLE contacts (id INTEGER PRIMARY KEY NOT NULL, firstName STRING, lastName STRING, phone STRING, email STRING)');
+  void onCreate(Database db, int version) async => await db.execute('CREATE TABLE contacts (id INTEGER PRIMARY KEY NOT NULL, firstName STRING, lastName STRING, phone STRING, email STRING)');
 
   Future<List<Map<String, dynamic>>> query(String table) async => (await db).query(table);
 
